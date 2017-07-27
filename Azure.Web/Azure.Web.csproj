@@ -147,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Implementation\Abstract\IContext.cs" />
+    <Compile Include="Implementation\Concrete\BlobContext.cs" />
     <Compile Include="Implementation\Concrete\SqlContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
