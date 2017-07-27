@@ -8,7 +8,7 @@ namespace Azure.Web.Implementation.Abstract
 {
     interface IContext
     {
-        dynamic Contex { get; }
+        dynamic Context { get; }
         void Add();
 
     }
