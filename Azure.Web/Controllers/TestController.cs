@@ -13,18 +13,18 @@ namespace Azure.Web.Controllers
         {
             var connStr = "pwndns.redis.cache.windows.net:6380,password=fZo4urRx55ZfOaC2wQkLwVeuQiSgb5vIbkT+aDGWfgA=,ssl=True,abortConnect=False";
 
-            Lazy<ConnectionMultiplexer> lzymgr = new Lazy<ConnectionMultiplexer>
-                (() =>
-            {
-                return ConnectionMultiplexer.Connect(connStr);
-            });
+            //Lazy<ConnectionMultiplexer> lzymgr = new Lazy<ConnectionMultiplexer>
+            //    (() =>
+            //{
+            //    return ConnectionMultiplexer.Connect(connStr);
+            //});
 
-            ConnectionMultiplexer conn = lzymgr.Value;
-            IDatabase db = conn.GetDatabase();
+            //ConnectionMultiplexer conn = lzymgr.Value;
+            //IDatabase db = conn.GetDatabase();
 
-            //Employee empObj = new Employee { Id = 234,Name = "Abc"};
-            db.StringSet("empname", "pawan");
-            var name = db.StringGet("empname");
+            ////Employee empObj = new Employee { Id = 234,Name = "Abc"};
+            //db.StringSet("empname", "pawan");
+            //var name = db.StringGet("empname");
 
             return View();
         }
