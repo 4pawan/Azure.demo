@@ -19,7 +19,7 @@ namespace Azure.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var products = db.Products.Include(p => p.ProductCategory).Include(p => p.ProductModel);
-            return View(await products.ToListAsync());
+            return View(await products.Take(10).ToListAsync());
         }
 
         // GET: Product/Details/5
