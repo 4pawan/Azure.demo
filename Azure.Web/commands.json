@@ -1,0 +1,9 @@
+{
+  "commands": {
+    "login": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File Powershell\\login.ps1"
+    }
+  }
+}
