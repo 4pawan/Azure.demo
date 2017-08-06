@@ -10,6 +10,14 @@ namespace Azure.Web.Controllers
 {
     public class BlobDemoController : Controller
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+
+
+
         public async Task<ActionResult> Index()
         {
             //var products = db.Products.Include(p => p.ProductCategory).Include(p => p.ProductModel);
@@ -27,7 +35,7 @@ namespace Azure.Web.Controllers
         {
             if (Request.Files.Count > 0)
             {
-                var file = Request.Files[0];
+                HttpPostedFileBase file = Request.Files[0];
 
                 if (file != null && file.ContentLength > 0)
                 {
@@ -38,10 +46,5 @@ namespace Azure.Web.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-
-
-
     }
 }
