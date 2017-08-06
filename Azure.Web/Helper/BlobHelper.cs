@@ -48,5 +48,21 @@ namespace Azure.Web.Helper
         {
             return reference.ListBlobs();
         }
+
+
+        public static IEnumerable<IListBlobItem> ListAsallBlob(CloudBlobContainer reference)
+        {     
+            //SharedAccessBlobPolicy sas = new SharedAccessBlobPolicy{SharedAccessStartTime = DateTimeOffset.Now,SharedAccessExpiryTime = DateTimeOffset.Now.AddMinutes(5),Permissions = SharedAccessBlobPermissions.Read};
+            //BlobContainerPermissions permissions = new BlobContainerPermissions();
+            //permissions.SharedAccessPolicies.Add("policyname1",sas); 
+            //reference.SetPermissions(permissions);
+            return reference.ListBlobs();
+        }
+
+
+
+
+
+
     }
 }
