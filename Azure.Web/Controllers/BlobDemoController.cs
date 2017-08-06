@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Azure.Web.Helper;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Azure.Web.Controllers
 {
@@ -15,16 +17,19 @@ namespace Azure.Web.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-
-
-
-        public async Task<ActionResult> Index()
+        private string ContainerName = "tst2";
+        private CloudBlobContainer ContainerReference
         {
-            //var products = db.Products.Include(p => p.ProductCategory).Include(p => p.ProductModel);
-            return View();
+            get { return BlobHelper.GetContainerReference(ContainerName); }
         }
 
-        public async Task<ActionResult> Add()
+        public ActionResult Index()
+        {
+            var model = BlobHelper.ListAllBlob(ContainerReference);
+            return View(model);
+        }
+
+        public ActionResult Add()
         {
             //var products = db.Products.Include(p => p.ProductCategory).Include(p => p.ProductModel);
             return View();
@@ -39,12 +44,12 @@ namespace Azure.Web.Controllers
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                    file.SaveAs(path);
+                    BlobHelper.UploadFile(ContainerReference, file);
                 }
             }
             return RedirectToAction("Index");
         }
+
+        
     }
 }

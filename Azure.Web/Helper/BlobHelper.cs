@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.PeerToPeer;
 using System.Web;
@@ -34,11 +35,18 @@ namespace Azure.Web.Helper
             return reference;
         }
 
-        public static string UploadFile(CloudBlobContainer reference, HttpPostedFileBase file)
+        public static void UploadFile(CloudBlobContainer reference, HttpPostedFileBase file)
         {
-            //reference
-            return "";
+            var blobRef = reference.GetBlockBlobReference(file.FileName);
+            if (!blobRef.Exists())
+            {
+                blobRef.UploadFromStream(file.InputStream);
+            }
         }
 
+        public static IEnumerable<IListBlobItem> ListAllBlob(CloudBlobContainer reference)
+        {
+            return reference.ListBlobs();
+        }
     }
 }
