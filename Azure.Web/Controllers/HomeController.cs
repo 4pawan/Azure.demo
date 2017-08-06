@@ -169,7 +169,7 @@ namespace Azure.Web.Controllers
 
             CloudStorageAccount csa = CloudStorageAccount.DevelopmentStorageAccount;
             var blobClient = csa.CreateCloudBlobClient();
-            CreateBlob("pwncontainer121");
+            //CreateBlob("pwncontainer121");
 
 
             //UploadBlob();
