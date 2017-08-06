@@ -7,7 +7,7 @@
 <h2>title</h2>
 
 
-@using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Upload", "BlobDemo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="file" name="file" />
     <input type="submit" name="Submit" id="Submit" value="Upload" />
