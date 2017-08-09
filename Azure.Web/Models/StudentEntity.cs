@@ -18,7 +18,7 @@ namespace Azure.Web.Models
     {
         public StudentEntity()
         {
-
+            
         }
 
         public StudentEntity(string partitionKey, string rowKey) : base(partitionKey, rowKey)
@@ -26,10 +26,19 @@ namespace Azure.Web.Models
 
         }
 
-        public string Std { get; set; }
-        public int RollNo { get; set; }
+        public string Std
+        {
+            get { return base.RowKey; }
+            set { base.RowKey = value; }
+        }
+
+        public string RollNo
+        {
+            get { return base.PartitionKey; }
+            set { base.PartitionKey = value; }
+        }
+
         public string Name { get; set; }
         public List<Courses> Courses { get; set; }
-
     }
 }

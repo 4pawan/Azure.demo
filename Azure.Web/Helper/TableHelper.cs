@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Azure.Web.Models;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table.DataServices;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -34,6 +35,40 @@ namespace Azure.Web.Helper
             var reference = CloudTableServiceClient.GetTableReference(name);
             reference.CreateIfNotExists();
             return reference;
+        }
+
+
+        public static TableResult ReadEntitesByKey(CloudTable tableReference, string partitionKey, string rowKey)
+        {
+            TableResult result = tableReference.Execute(TableOperation.Retrieve<TableEntity>(partitionKey, rowKey));
+            return result;
+        }
+        public static TableResult ListAll(CloudTable tableReference)
+        {
+
+            TableQuery<ITableEntity> query = new TableQuery<ITableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+
+            //TableResult result = tableReference.ExecuteQuery(TableQuery.Project<TableQuery>())
+            return null;
+        }
+
+
+        public static void AddToTable(CloudTable tableReference, ITableEntity entity)
+        {
+            TableOperation.Insert(entity);
+        }
+
+        public static void AddBulkEntitesToTable(CloudTable tableReference, List<ITableEntity> entities)
+        {
+            TableBatchOperation batchOperation = new TableBatchOperation();
+            entities.ForEach(e => batchOperation.Insert(e));
+            tableReference.ExecuteBatch(batchOperation);
+        }
+
+
+        public static void DeleteRecordsFromTable(CloudTable tableReference, ITableEntity entity)
+        {
+            TableOperation.Delete(entity);
         }
     }
 }
