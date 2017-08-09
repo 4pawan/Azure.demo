@@ -32,10 +32,7 @@ namespace Azure.Web.Helper
         public static CloudTable GetTableReference(string name)
         {
             var reference = CloudTableServiceClient.GetTableReference(name);
-            reference.CreateIfNotExists(new TableRequestOptions
-            {
-
-            });
+            reference.CreateIfNotExists();
             return reference;
         }
     }

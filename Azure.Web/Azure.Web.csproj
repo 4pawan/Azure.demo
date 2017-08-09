@@ -202,9 +202,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\BlobHelper.cs" />
+    <Compile Include="Helper\CosmosDbHelper.cs" />
+    <Compile Include="Helper\TableHelper.cs" />
     <Compile Include="Implementation\Abstract\IContext.cs" />
     <Compile Include="Implementation\Concrete\BlobContext.cs" />
     <Compile Include="Implementation\Concrete\SqlContext.cs" />
+    <Compile Include="Models\StudentEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
