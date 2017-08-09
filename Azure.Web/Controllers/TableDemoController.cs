@@ -17,9 +17,9 @@ namespace Azure.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = TableHelper.AddToTable(TableReference, student);
+            var model = TableHelper.ListAll(TableReference);
 
-            return View();
+            return View(model);
         }
 
         public ActionResult Add()

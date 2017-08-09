@@ -43,13 +43,14 @@ namespace Azure.Web.Helper
             TableResult result = tableReference.Execute(TableOperation.Retrieve<TableEntity>(partitionKey, rowKey));
             return result;
         }
-        public static TableResult ListAll(CloudTable tableReference)
+        public static IEnumerable<ITableEntity> ListAll(CloudTable tableReference)
         {
 
-            TableQuery<ITableEntity> query = new TableQuery<ITableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+            //TableQuery<ITableEntity> quesry = new TableQuery<ITableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
 
-            //TableResult result = tableReference.ExecuteQuery(TableQuery.Project<TableQuery>())
-            return null;
+            var query = new TableQuery<StudentEntity>();
+            IEnumerable<ITableEntity> result = tableReference.ExecuteQuery(query);
+            return result;
         }
 
 
