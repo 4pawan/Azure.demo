@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.ServiceBus.Messaging;
-using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace Azure.Web.Helper
 {
@@ -29,16 +28,33 @@ namespace Azure.Web.Helper
         {
             TopicClient.Send(new BrokeredMessage(msg));
         }
-        public static BrokeredMessage ReadMsgFromTopics(CloudQueue reference)
+        public static TopicsMessage ReadMsgFromTopics()
         {
-            BrokeredMessage msg = SubscriptionClient.Receive(Int64.MaxValue);
-            return msg;
+            TopicsMessage message =new TopicsMessage();
+            SubscriptionClient.OnMessage(msg =>
+            {
+                message.MsgContent = msg.GetBody<string>();
+                message.BrokeredMessage = msg;
+            });
+            return message;
         }
+
+        private static void callback(BrokeredMessage obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+    }
+
+    public class TopicsMessage
+    {
+        public BrokeredMessage BrokeredMessage { get; set; }
+        public string MsgContent { get; set; }
     }
 }
